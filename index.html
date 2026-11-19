@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Celtic Mythology</title>
+  <link rel="stylesheet" href="index.css">
+
+  <!-- Tell the browser where to download three.js (the 3D library) from -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+      }
+    }
+  </script>
+  <script type="module" src="js/page.js"></script>
+</head>
+<body>
+
+  <!-- I - The 3D scene (blurred until the user logs in) -->
+  <canvas id="scene"></canvas>
+
+  <!-- II - The log in card (accounts don't work yet: both buttons just start) -->
+  <form id="login">
+    <h1>Log in</h1>
+    <input name="username" placeholder="Username" autocomplete="username">
+    <input name="password" type="password" placeholder="Password" autocomplete="current-password">
+    <button class="play" aria-label="Start">▶</button>
+    <button class="link">Create an account</button>
+  </form>
+
+  <!-- III - The two pages of the open book (shown after the zoom) -->
+  <main id="book" hidden>
+    <section class="page left">
+      <h2>Hello world 1</h2>
+      <p>Maps and infos will go here.</p>
+    </section>
+    <section class="page right">
+      <h2>Hello world 2</h2>
+      <p>Menus, settings and infos will go here.</p>
+    </section>
+  </main>
+
+</body>
+</html>

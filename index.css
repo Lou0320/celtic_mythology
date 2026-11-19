@@ -1,0 +1,98 @@
+body {
+  margin: 0;
+  background: #000;
+  font-family: Georgia, "Times New Roman", serif;
+  overflow: hidden;
+}
+
+/* I - 3D scene */
+#scene {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  filter: blur(10px);
+  transform: scale(1.05);              /* hides the soft edges of the blur */
+  transition: filter 1s, transform 1s;
+}
+body.started #scene {
+  filter: none;
+  transform: none;
+}
+
+/* II - Log in card */
+#login {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: min(320px, 85vw);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  border: 2px solid #d9e8d0;
+  border-radius: 24px;
+  background: rgba(10, 20, 12, 0.25);
+  color: #eef5e8;
+  transition: opacity 0.8s;
+}
+body.started #login {
+  opacity: 0;
+  pointer-events: none;
+}
+#login h1 {
+  margin: 0;
+  font-weight: normal;
+}
+#login input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 18px;
+  border: 2px solid #d9e8d0;
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+}
+#login input::placeholder { color: #a9b8a2; }
+#login button {
+  border: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+#login .play {
+  width: 64px;
+  height: 64px;
+  border: 2px solid #d9e8d0;
+  border-radius: 50%;
+  font-size: 24px;
+}
+#login .play:hover { background: rgba(217, 232, 208, 0.15); }
+#login .link { text-decoration: underline; opacity: 0.8; }
+
+/* III - Book pages (drawn on top of the 3D open book) */
+#book {
+  position: fixed;
+  inset: 0;
+  margin: auto;                          /* centred, and the same size as the 3D book: */
+  width: min(94vw, 94vh * 1.47);         /* 94 = book height on screen (in %), 1.47 = book width / height */
+  aspect-ratio: 1.47;
+  display: grid;
+  grid-template-columns: 1fr 1fr;     /* left page | right page */
+}
+#book[hidden] { display: none; }
+.page {
+  padding: 14% 12% 10%;                  /* top, sides, bottom: like the margins of a real book */
+  color: #2b1d10;
+  animation: appear 1.2s ease-out both;
+}
+.page.right { animation-delay: 0.6s; }  /* the right page appears just after the left one */
+
+@keyframes appear {
+  from { opacity: 0; translate: 0 20px; }
+  to   { opacity: 1; translate: 0 0; }
+}
